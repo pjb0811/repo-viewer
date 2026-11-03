@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint . --max-warnings=0",
+    "check-types": "next typegen && tsc --noEmit",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.4.4",
@@ -14,14 +17,39 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@tailwindcss/turbopack": "^4",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-boundaries": "^7.4.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-classnames": "^0.10.5",
+    "prettier-plugin-merge": "^0.10.2",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@11.14.0"
+  "packageManager": "pnpm@11.14.0",
+  "description": "Browse your GitHub repositories read-only in the browser, built on @jbpark/workbench",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,mjs}": [
+      "bash -c 'pnpm lint'",
+      "prettier --write",
+      "bash -c 'pnpm check-types'"
+    ],
+    "**/*.{js,json,css,md}": [
+      "prettier --write"
+    ]
+  }
 }
