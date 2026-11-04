@@ -14,9 +14,11 @@ export interface SessionData {
 // it; GitHub's refresh tokens last about six months.
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 30;
 
+const COOKIE_NAME = 'repo_viewer_session';
+
 const getSession = async () =>
   getIronSession<SessionData>(await cookies(), {
-    cookieName: 'repo_viewer_session',
+    cookieName: COOKIE_NAME,
     password: getSessionSecret(),
     ttl: SESSION_TTL_SECONDS,
     cookieOptions: {
@@ -30,6 +32,12 @@ const getSession = async () =>
 
 /** The signed-in user's session, or `undefined` when signed out. */
 export const readSession = async (): Promise<SessionData | undefined> => {
+  // Without a cookie there is nothing to unseal, so signed-out pages render
+  // even where `SESSION_SECRET` is not set, such as preview deployments.
+  if (!(await cookies()).has(COOKIE_NAME)) {
+    return undefined;
+  }
+
   const { user, tokens } = await getSession();
 
   return user && tokens ? { user, tokens } : undefined;
