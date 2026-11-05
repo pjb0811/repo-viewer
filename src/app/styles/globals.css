@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './workbench.css';
 
 :root {
   --background: #ffffff;

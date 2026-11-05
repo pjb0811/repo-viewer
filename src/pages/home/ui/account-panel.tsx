@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { SignInLink, SignOutButton } from '@/features/auth';
 
@@ -55,6 +56,13 @@ export const AccountPanel = async ({
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-3">
+        <Link
+          href="/repos"
+          className="bg-foreground text-background rounded-md px-4 py-2 text-sm
+            font-medium hover:opacity-90"
+        >
+          Browse repositories
+        </Link>
         <a
           href={`https://github.com/apps/${slug}/installations/new`}
           className="text-sm underline underline-offset-4"

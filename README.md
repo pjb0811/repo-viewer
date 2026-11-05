@@ -3,11 +3,13 @@
 Sign in with GitHub and browse the code of your repositories read-only, on desktop or phone. The file tree and editor come from [`@jbpark/workbench`](https://github.com/pjb0811/workbench).
 
 > [!NOTE]
-> Work in progress. Sign-in works; the repository list and the code view follow.
+> Work in progress. Sign-in, the repository list and the read-only code view of the default branch work; branch switching follows.
 
 ## How it works
 
 - Sign-in uses a GitHub App with read-only **Contents** permission, so the site can never write to a repository. It only sees the repositories you installed the App on.
+- The repository list shows what the App is installed on. Opening one resolves its default branch to a commit and shows that snapshot with [`@jbpark/workbench`](https://github.com/pjb0811/workbench); on a phone the file tree stacks above the editor.
+- Files over 1 MB and binary files show a note instead of their contents.
 - GitHub's user access token stays on the server, inside an encrypted, httpOnly session cookie. The browser never receives it.
 
 ## Development
