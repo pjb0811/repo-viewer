@@ -18,7 +18,7 @@
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/lang-markdown": "^6.5.2",
     "@codemirror/merge": "^6.12.3",
-    "@jbpark/ui-kit": "^10.6.0",
+    "@jbpark/ui-kit": "^10.7.0",
     "@jbpark/use-hooks": "^4.7.0",
     "@jbpark/workbench": "^0.3.0",
     "@uiw/codemirror-theme-vscode": "^4.25.12",
